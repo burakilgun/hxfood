@@ -11,6 +11,7 @@ using HxFood.Api.Services.Mapping;
 using HxFood.Api.Services.Validators;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -37,7 +38,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddStackExchangeRedisCache(opt =>
 {
-    opt.Configuration = "localhost:6379";
+    opt.Configuration = builder.Configuration.GetConnectionString("RedisConnectionString");
 });
 
 builder.Services.AddAutoMapper(opt =>
